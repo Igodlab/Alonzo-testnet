@@ -1,5 +1,5 @@
 #  Exercise 1
-## Alonzo White testnet
+## Alonzo Purple testnet
 
 Building a Cardano passive-node and the **cardano-cli** using Nix
 
@@ -10,47 +10,47 @@ Clone the IOHK repo for the cardano-node
 
 #### 2. Checkout to the right tag
 
-For the Alonzo White testnet we will be working with a particular tag, checkout to `tag\alonzo-white-1.0` and create a new branch `alonzo-white_1_0` (note that using underscore for the _1_0 in the branch will prevent ambiguitiy)
+For the Alonzo Purple testnet we will be working with a particular tag, checkout to `tag\alonzo-purple-1.0` and create a new branch `1.29.0-rc3-alonzo-purple` 
 
-    git checkout tag/alonzo-white-1.0 -b alonzo-white_1_0
+    git checkout tag/1.29.0-rc3 -b 1.29.0-rc3-alonzo-purple
 
 #### 3. Build node and cli
 
 We now can use Nix to build the node and the cli
 
-    nix-build -A scripts.alonzo-white.node -o result/alonzo-white/cardano-node-alonzo-white
-    nix-build -A cardano-cli -o result/alonzo-white/cardano-cli
+    nix-build -A scripts.alonzo-purple.node -o result/alonzo-purple/cardano-node-alonzo-purple
+    nix-build -A cardano-cli -o result/alonzo-purple/cardano-cli
 
 #### 4. Add the cli SOCKET
 
 To make quicker access to the cli, we have to add its socket to our `bashrc`. Replace `yourPath` with the path where you have cloned the repo in step 1
 
-    echo export CARDANO_NODE_SOCKET_PATH=~/yourPath/cardano-node/result/alonzo-white/state-node-alonzo-white/node.socket >> ~/.bashrc
+    echo export CARDANO_NODE_SOCKET_PATH=~/yourPath/cardano-node/result/alonzo-purple/state-node-alonzo-purple/node.socket >> ~/.bashrc
     source ~/.bashrc
 
-Additionally you can copy `cardano-cli`(see **NOTE**) and `cardano-node-alonzo-white` bins to your `/usr/local/bin/` path for quick access to these commands as follows
+Additionally you can copy `cardano-cli`(see **NOTE**) and `cardano-node-alonzo-purple` bins to your `/usr/local/bin/` path for quick access to these commands as follows
 
 ```
 $ cd /usr/local/bin/
-$ sudo cp ~/yourPath/cardano-node/result/alonzo-white/cardano-cli/bin/cardano-cli ./
-$ sudo cp ~/yourPath/cardano-node/result/alonzo-white/cardano-node-alonzo-white/bin/cardano-node-alonzo-white ./
+$ sudo cp ~/yourPath/cardano-node/result/alonzo-purple/cardano-cli/bin/cardano-cli ./
+$ sudo cp ~/yourPath/cardano-node/result/alonzo-purple/cardano-node-alonzo-purple/bin/cardano-node-alonzo-purple ./
 ```
 
 now verify that the commands are accessible, expected output:
 
 ```
 $ cardano-cli --version
-cardano-cli 1.27.0 - linux-x86_64 - ghc-8.10
-git rev 7cf540dafa0ca496526e0614fa3ef6262e85c70d
+cardano-cli 1.28.0 - linux-x86_64 - ghc-8.10
+git rev c17315f2775eaf988e432b7caea3a094d62ce6c9
 
-$ cardano-node-alonzo-white --help
-Starting: /nix/store/c7cnd5nbf4332wxrllqvrkpdfk8w68x2-cardano-node-exe-cardano-node-1.27.0/bin/cardano-node run
---config /nix/store/5mm9vmf4xrbhwl9rc14pi8kr51g5daan-config-0-0.json
---database-path state-node-alonzo-white/db-alonzo-white
---topology /nix/store/dr0203ii399zqplq547f6gqldk9s5dhv-topology.yaml
+$ cardano-node-alonzo-purple --help
+-Starting: /nix/store/4s7q2xngxq44h6dxgyinrb6f0cac9ajz-cardano-node-exe-cardano-node-1.28.0/bin/cardano-node run
+--config /nix/store/nwhbllpv4mvaxdwf6n25bmxnpv0ag0hz-config-0-0.json
+--database-path state-node-alonzo-purple/db-alonzo-purple
+--topology /nix/store/6r19xjl4i4iaa4nipl9vqqvacqr8fqya-topology.yaml
 --host-addr 0.0.0.0
 --port 3001
---socket-path state-node-alonzo-white/node.socket
+--socket-path state-node-alonzo-purple/node.socket
 .
 .
 .
@@ -62,11 +62,11 @@ Starting: /nix/store/c7cnd5nbf4332wxrllqvrkpdfk8w68x2-cardano-node-exe-cardano-n
 
 We will start a passive-node, this is a relay that can communicate with the testnet but will not participate in the creation of blocks. 
 
-If you are joining before the Hard Fork (HF), before afternoon UTC time of July 14, 2021 you can log all the info of the node to capture the transition of the HF (see exercise 2), you will see the transition from Mary era to Alonzo White era.
+If you are joining before the Hard Fork (HF), before afternoon UTC time of July 14, 2021 you can log all the info of the node to capture the transition of the HF (see exercise 2), you will see the transition from Mary era to Alonzo Purple era.
 
 ```
-$ cd result/alonzo-white
-$ cardano-node-alonzo-white
+$ cd result/alonzo-purple
+$ cardano-node-alonzo-purple
 ```
 
 You should see a lot of information being printed on the screen.
