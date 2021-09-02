@@ -57,6 +57,8 @@ library
                       , plutus-tx-plugin
                       , serialise
 
+  ghc-options: -fobject-code -fno-ignore-interface-pragmas -fno-omit-interface-pragmas
+
 executable plutus-alwayssucceeds
   import:               base, project-config
   hs-source-dirs:       app
@@ -65,6 +67,7 @@ executable plutus-alwayssucceeds
 
   build-depends:        cardano-api
                       , cardano-ledger-alonzo
+                      , plutus-ledger
                       , plutus-alwayssucceeds
                       , plutus-ledger-api
                       , bytestring

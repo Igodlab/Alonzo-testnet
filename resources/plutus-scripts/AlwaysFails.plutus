@@ -1,5 +1,5 @@
 {
     "type": "PlutusScriptV1",
-    "description": "An example Plutus script (for tx in context) that always fails",
-    "cborHex": "49010000200200200601"
+    "description": "",
+    "cborHex": "581e581c01000033223232222350040071235002353003001498498480048005"
 }

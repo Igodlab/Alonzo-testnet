@@ -44,8 +44,9 @@ library
 
   hs-source-dirs:       src
 
-  exposed-modules:      Cardano.PlutusExample.HelloWorld,
-			Cardano.PlutusExample.HelloWorldByteStringParametric
+  exposed-modules:      Cardano.PlutusExample.HelloWorld
+                      , Cardano.PlutusExample.HelloWorldByteStringParametric
+                      , Cardano.PlutusExample.HelloWorldLiteralByteString
 
   build-depends:        bytestring
                       , cardano-api
@@ -55,6 +56,8 @@ library
                       , plutus-tx-plugin
                       , serialise
 
+  ghc-options: -fobject-code -fno-ignore-interface-pragmas -fno-omit-interface-pragmas
+
 executable plutus-helloworld
   import:               base, project-config
   hs-source-dirs:       app
@@ -63,9 +66,11 @@ executable plutus-helloworld
 
   build-depends:        cardano-api
                       , cardano-ledger-alonzo
+                      , plutus-ledger
                       , plutus-helloworld
                       , plutus-ledger-api
                       , bytestring
+
 
 executable plutus-helloworld-bytestring
   import:               base, project-config
@@ -75,6 +80,21 @@ executable plutus-helloworld-bytestring
 
   build-depends:        aeson
                       , cardano-api
+                      , cardano-ledger-alonzo
+                      , plutus-helloworld
+                      , plutus-ledger-api
+                      , plutus-tx
+                      , bytestring
+
+executable plutus-helloworld-literal-bytestring
+  import:               base, project-config
+  hs-source-dirs:       app
+  main-is:              plutus-helloworld-literal-bytestring.hs
+  ghc-options:          -threaded -rtsopts "-with-rtsopts=-T"
+
+  build-depends:        aeson
+                      , cardano-api
+                      , cardano-ledger-alonzo
                       , plutus-helloworld
                       , plutus-ledger-api
                       , plutus-tx

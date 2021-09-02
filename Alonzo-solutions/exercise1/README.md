@@ -75,7 +75,7 @@ You should see a lot of information being printed on the screen.
 
 To verify that we are in sync with the testnet we will use the cli and query the tip of the blockchain. Leave the node running and in a new Terminalenter
 
-    $ cardano-cli query tip --testnet-magic 7
+    $ cardano-cli query tip --testnet-magic 8
 
 we should see something like this
 
@@ -125,10 +125,10 @@ cardano-cli address build \
 --payment-verification-key-file payment.vkey \
 --stake-verification-key-file stake.vkey \
 --out-file payment.addr \
---testnet-magic 7
+--testnet-magic 8
 ```
 
-Print the payment address on Terminal, and then export it
+Print the payment address on Terminal and then export it
 
 ```
 cat payment.addr
@@ -142,7 +142,7 @@ Now generate a staking address
 cardano-cli stake-address build \
 --stake-verification-key-file stake.vkey \
 --out-file stake.addr \
---testnet-magic 7
+--testnet-magic 8
 ```
 
 verify the staking address
@@ -155,3 +155,4 @@ stake_test1ur86uuq8gyvc04g0a2tfzrqtrf92ak58xsknu4fafsh672g3kvfmg
 Sweet!
 
 Noy claim your goody-bag of test-ADA!
+,
